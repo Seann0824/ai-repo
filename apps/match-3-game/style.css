@@ -1,0 +1,298 @@
+/* 消消乐 - 移动端样式 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.game-container {
+    width: 100%;
+    max-width: 480px;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    position: relative;
+}
+
+/* 头部计分板 */
+.game-header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.score-board {
+    display: flex;
+    justify-content: space-around;
+}
+
+.score-item {
+    text-align: center;
+    color: #fff;
+}
+
+.score-item .label {
+    display: block;
+    font-size: 12px;
+    opacity: 0.8;
+    margin-bottom: 4px;
+}
+
+.score-item .value {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+/* 游戏棋盘 */
+.game-board-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px;
+    border-radius: 12px;
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 400px;
+}
+
+/* 宝石 */
+.gem {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(20px, 5vw, 28px);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    user-select: none;
+}
+
+.gem::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    height: 40%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, transparent 100%);
+    border-radius: 6px 6px 0 0;
+    pointer-events: none;
+}
+
+.gem:active {
+    transform: scale(0.9);
+}
+
+.gem.selected {
+    animation: pulse 0.5s ease infinite;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    z-index: 10;
+}
+
+.gem.matched {
+    animation: disappear 0.3s ease forwards;
+}
+
+.gem.falling {
+    animation: fall 0.4s ease-in;
+}
+
+/* 宝石颜色 */
+.gem-red { background: linear-gradient(145deg, #ff6b6b, #ee5a5a); }
+.gem-blue { background: linear-gradient(145deg, #4ecdc4, #44a08d); }
+.gem-green { background: linear-gradient(145deg, #95e1d3, #6ab04c); }
+.gem-yellow { background: linear-gradient(145deg, #f9ca24, #f0932b); }
+.gem-purple { background: linear-gradient(145deg, #a29bfe, #6c5ce7); }
+.gem-orange { background: linear-gradient(145deg, #ff9f43, #ee5a24); }
+.gem-pink { background: linear-gradient(145deg, #fd79a8, #e84393); }
+
+/* 动画 */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes disappear {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+@keyframes fall {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.gem.shake {
+    animation: shake 0.3s ease;
+}
+
+/* 控制按钮 */
+.game-controls {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.game-controls button {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-restart {
+    background: linear-gradient(145deg, #74b9ff, #0984e3);
+    color: white;
+}
+
+.btn-hint {
+    background: linear-gradient(145deg, #fdcb6e, #f39c12);
+    color: white;
+}
+
+.btn-primary {
+    background: linear-gradient(145deg, #00b894, #00cec9);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* 弹窗 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    padding: 20px;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #2d3436, #1a1a2e);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 320px;
+    width: 100%;
+    color: white;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #ffd700, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.modal-content p {
+    margin-bottom: 10px;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+/* 连击提示 */
+.combo-text {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    animation: comboFloat 1s ease-out forwards;
+    z-index: 50;
+}
+
+@keyframes comboFloat {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
+}
+
+/* 分数增加动画 */
+.score-popup {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    color: #00cec9;
+    pointer-events: none;
+    animation: scoreFloat 0.8s ease-out forwards;
+    z-index: 50;
+}
+
+@keyframes scoreFloat {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-30px); opacity: 0; }
+}
+
+/* 提示高亮 */
+.gem.hint {
+    animation: hintPulse 0.8s ease infinite;
+}
+
+@keyframes hintPulse {
+    0%, 100% { box-shadow: 0 0 5px #fff; }
+    50% { box-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700; }
+}
