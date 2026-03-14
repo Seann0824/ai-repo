@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Todo List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📋 GitHub Todo</h1>
+            <p>管理你的 GitHub 任务</p>
+        </header>
+        
+        <div class="input-section">
+            <input type="text" id="taskInput" placeholder="添加新任务..." />
+            <button id="addBtn" class="btn-primary">添加</button>
+        </div>
+        
+        <div class="stats">
+            <span id="totalTasks">总任务: 0</span>
+            <span id="completedTasks">已完成: 0</span>
+        </div>
+        
+        <ul id="todoList" class="todo-list">
+            <!-- 任务列表将在这里动态生成 -->
+        </ul>
+        
+        <div class="footer">
+            <button id="clearCompleted" class="btn-secondary">清除已完成</button>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "ai-repo",
+  "version": "1.0.0",
+  "description": "AI-powered apps monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:todo": "cd apps/todo-list && python3 -m http.server 3000",
+    "build": "echo 'Build scripts to be added'",
+    "deploy": "git push origin main"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Seann0824/ai-repo.git"
+  },
+  "keywords": ["monorepo", "ai", "apps", "todo"],
+  "author": "Seann0824",
+  "license": "MIT"
+}

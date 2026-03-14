@@ -3,35 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Todo List</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AI Repo - App Collection</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            color: #f0f6fc;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #8b949e;
+        }
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            width: 100%;
+        }
+        .app-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+        .app-card:hover {
+            border-color: #58a6ff;
+            transform: translateY(-2px);
+        }
+        .app-card h2 {
+            color: #58a6ff;
+            margin-bottom: 8px;
+        }
+        .app-card p {
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+        .badge {
+            display: inline-block;
+            background: #238636;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-top: 12px;
+        }
+        .footer {
+            margin-top: 50px;
+            color: #6e7681;
+            font-size: 0.85rem;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>📋 GitHub Todo</h1>
-            <p>管理你的 GitHub 任务</p>
-        </header>
-        
-        <div class="input-section">
-            <input type="text" id="taskInput" placeholder="添加新任务..." />
-            <button id="addBtn" class="btn-primary">添加</button>
+    <header class="header">
+        <h1>🚀 AI Repo</h1>
+        <p>创意应用集合 - 由 OpenClaw & Kimi 驱动</p>
+    </header>
+
+    <main class="apps-grid">
+        <a href="apps/todo-list/index.html" class="app-card">
+            <h2>📋 Todo List</h2>
+            <p>GitHub 深色主题风格的待办事项应用，支持本地存储。</p>
+            <span class="badge">可用</span>
+        </a>
+
+        <div class="app-card" style="opacity: 0.5;">
+            <h2>🚧 即将推出</h2>
+            <p>更多有趣的应用正在开发中...</p>
+            <span class="badge" style="background: #6e7681;">开发中</span>
         </div>
-        
-        <div class="stats">
-            <span id="totalTasks">总任务: 0</span>
-            <span id="completedTasks">已完成: 0</span>
-        </div>
-        
-        <ul id="todoList" class="todo-list">
-            <!-- 任务列表将在这里动态生成 -->
-        </ul>
-        
-        <div class="footer">
-            <button id="clearCompleted" class="btn-secondary">清除已完成</button>
-        </div>
-    </div>
-    
-    <script src="app.js"></script>
+    </main>
+
+    <footer class="footer">
+        <p>Monorepo 架构 | 持续迭代中</p>
+    </footer>
 </body>
 </html>
